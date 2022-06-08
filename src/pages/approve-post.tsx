@@ -123,5 +123,3 @@ const ApprovePost: React.FC<ApprovePostProps> = ({}) => {
 };
 
 export default withApollo({ ssr: true })(ApprovePost);
-
-//to change git
