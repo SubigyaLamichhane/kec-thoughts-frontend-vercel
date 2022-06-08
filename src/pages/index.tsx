@@ -31,10 +31,6 @@ const Index: React.FC<IndexProps> = ({}) => {
   if (!loading && !data) {
     return <div>There are no posts.</div>;
   }
-  let flag: boolean = false;
-  if (meData) {
-    flag = true;
-  }
 
   return (
     <div>
