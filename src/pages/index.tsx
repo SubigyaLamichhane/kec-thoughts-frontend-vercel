@@ -11,7 +11,8 @@ import NextLink from 'next/link';
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Wrapper from '../components/Wrapper';
-import { useApprovedPostsQuery } from '../generated/graphql';
+import { useApprovedPostsQuery, useMeQuery } from '../generated/graphql';
+import { isServer } from '../utils/isServer';
 import { withApollo } from '../utils/withApollo';
 
 interface IndexProps {}
@@ -22,6 +23,9 @@ const Index: React.FC<IndexProps> = ({}) => {
       limit: 15,
       cursor: null,
     },
+  });
+  const { data: meData, loading: MeLoading } = useMeQuery({
+    skip: isServer(),
   });
 
   if (!loading && !data) {
@@ -34,9 +38,11 @@ const Index: React.FC<IndexProps> = ({}) => {
       <Wrapper>
         <Flex mb={10} mt={10}>
           <Heading>Kec Thoughts</Heading>
-          <NextLink href="/create-post">
-            <Link ml={'auto'}>Create Post</Link>
-          </NextLink>
+          {meData.me && (
+            <NextLink href="/create-post">
+              <Link ml={'auto'}>Create Post</Link>
+            </NextLink>
+          )}
         </Flex>
         <Stack spacing={8}>
           {data &&
