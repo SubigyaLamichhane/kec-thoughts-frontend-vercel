@@ -26,9 +26,6 @@ const CreatePost: React.FC<CreatePostProps> = ({}) => {
           });
           if (response.data?.createPost) {
             router.push('/');
-            alert(
-              'Your post is in the process of being reveiwed by the admin.'
-            );
           }
         }}
       >
