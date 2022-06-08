@@ -1,7 +1,6 @@
 import { withApollo as createWithApollo } from 'next-apollo';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { PaginatedApprovedPosts } from '../generated/graphql';
-import { NextPage } from 'next';
 
 const client = (ctx) =>
   new ApolloClient({
@@ -24,7 +23,6 @@ const client = (ctx) =>
                 existing: PaginatedApprovedPosts | undefined,
                 incoming: PaginatedApprovedPosts
               ): PaginatedApprovedPosts {
-                console.log(incoming, existing);
                 return {
                   __typename: 'PaginatedApprovedPosts',
                   hasMore: incoming.hasMore,
