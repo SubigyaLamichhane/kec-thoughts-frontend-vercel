@@ -31,6 +31,10 @@ const Index: React.FC<IndexProps> = ({}) => {
   if (!loading && !data) {
     return <div>There are no posts.</div>;
   }
+  let flag: boolean = false;
+  if (meData) {
+    flag = true;
+  }
 
   return (
     <div>
@@ -38,11 +42,13 @@ const Index: React.FC<IndexProps> = ({}) => {
       <Wrapper>
         <Flex mb={10} mt={10}>
           <Heading>Kec Thoughts</Heading>
-          {meData.me && (
-            <NextLink href="/create-post">
-              <Link ml={'auto'}>Create Post</Link>
-            </NextLink>
-          )}
+          {meData
+            ? meData?.me && (
+                <NextLink href="/create-post">
+                  <Link ml={'auto'}>Create Post</Link>
+                </NextLink>
+              )
+            : null}
         </Flex>
         <Stack spacing={8}>
           {data &&
